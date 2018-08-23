@@ -1,33 +1,42 @@
 # laravel-clickhouse
-[![Build Status](https://travis-ci.org/esazykin/laravel-clickhouse.svg?branch=master)](https://travis-ci.org/esazykin/laravel-clickhouse)
-[![StyleCI](https://styleci.io/repos/112756298/shield?branch=master)](https://styleci.io/repos/112756298)
-[![Coverage Status](https://coveralls.io/repos/github/esazykin/laravel-clickhouse/badge.svg)](https://coveralls.io/github/esazykin/laravel-clickhouse)
 
 Eloquent model for ClickHouse
 
 ## Prerequisites
-- php 7.1
-- clickhouse server
+- PHP 7.1+
+- Clickhouse Server
 
 ## Installation
-```sh
-$ composer require esazykin/laravel-clickhouse
+
+Add this repository into composer.json:
+
+```php
+"require": {
+    "Henryh/laravel-clickhouse": "^0.2"
+}
+"repositories": [
+    {
+        "url": "git@github.com:Henryh/laravel-clickhouse.git",
+        "type": "git"
+    }
+]
 ```
 
 Then add the code above into your config/app.php file providers section
 ```php
 Esazykin\LaravelClickHouse\ClickHouseServiceProvider::class,
 ```
+
 And add new connection into your config/database.php file. Something like this:
 ```php
 'connections' => [
     'clickhouse' => [
         'driver' => 'clickhouse',
-        'host' => '',
-        'port' => '',
-        'database' => '',
-        'username' => '',
-        'password' => '',
+        'host' => env('CLICKHOUSE_HOST', 'localhost'),
+        'port' => env('CLICKHOUSE_PORT', '8123'),
+        'database' => env('CLICKHOUSE_DATABASE', 'test'),
+        'username' => env('CLICKHOUSE_USERNAME', 'default'),
+        'password' => env('CLICKHOUSE_PASSWORD', 'default'),
         'options' => [
             'timeout' => 10,
             'protocol' => 'https'
@@ -35,7 +44,15 @@ And add new connection into your config/database.php file. Something like this:
     ]
 ]
 ```
-Or like this, if clickhouse runs in cluster
+
+Add settings into your .env file:
+```ini
+CLICKHOUSE_DATABASE=test
+CLICKHOUSE_USERNAME=default
+CLICKHOUSE_PASSWORD=default
+```
+
+Or like this, if clickhouse runs in cluster add in config/database.php:
 ```php
 'connections' => [
     'clickhouse' => [
@@ -84,16 +101,10 @@ And use it
 ```php
 Payment::select(raw('count() AS cnt'), 'payment_system')
     ->whereBetween('payed_at', [
-        Carbon\Carbon::parse('2017-01-01'),
+        Carbon\Carbon::parse('2018-01-01'),
         now(),
     ])
     ->groupBy('payment_system')
     ->get();
 
 ```
-
-## Roadmap
-- more tests
-- Model::with() method
-- relations
-
