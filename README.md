@@ -12,7 +12,7 @@ Add this repository into composer.json:
 
 ```php
 "require": {
-    "Henryh/laravel-clickhouse": "^0.2"
+    "Henryh/laravel-clickhouse": "master"
 }
 "repositories": [
     {
