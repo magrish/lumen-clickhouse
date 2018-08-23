@@ -12,11 +12,11 @@ Add this repository into composer.json:
 
 ```php
 "require": {
-    "Henryh/laravel-clickhouse": "master"
+    "henryh/laravel-clickhouse": "master"
 }
 "repositories": [
     {
-        "url": "git@github.com:Henryh/laravel-clickhouse.git",
+        "url": "git@github.com:henryh/laravel-clickhouse.git",
         "type": "git"
     }
 ]
