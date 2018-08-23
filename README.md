@@ -11,15 +11,15 @@ Eloquent model for ClickHouse
 Add this repository into composer.json:
 
 ```php
-"require": {
-    "henryh/laravel-clickhouse": "master"
-}
 "repositories": [
     {
         "url": "git@github.com:henryh/laravel-clickhouse.git",
         "type": "git"
     }
-]
+],
+"require": {
+    "henryh/laravel-clickhouse": "master"
+}
 ```
 
 Then add the code above into your config/app.php file providers section
