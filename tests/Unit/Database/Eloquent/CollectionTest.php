@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Esazykin\LaravelClickHouse\Tests\Unit\Database\Eloquent;
 
-use Mockery\Mock;
 use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
-use Illuminate\Database\DatabaseManager;
-use Esazykin\LaravelClickHouse\Tests\Helpers;
 use Esazykin\LaravelClickHouse\Database\Connection;
 use Esazykin\LaravelClickHouse\Database\Eloquent\Collection;
 use Esazykin\LaravelClickHouse\Tests\EloquentModelCastingTest;
+use Esazykin\LaravelClickHouse\Tests\Helpers;
+use Illuminate\Database\DatabaseManager;
+use Mockery\Mock;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @property Mock|Connection connection
@@ -49,7 +49,7 @@ class CollectionTest extends TestCase
             ->shouldReceive('select')
             ->andReturn($connectionResult->toArray());
 
-        $now = now();
+        $now = Carbon::now();
 
         $models = EloquentModelCastingTest::all()
             ->map(function (EloquentModelCastingTest $model) use ($now) {
@@ -79,7 +79,7 @@ class CollectionTest extends TestCase
             ->shouldReceive('select')
             ->andReturn($connectionResult->toArray());
 
-        $now = now();
+        $now = Carbon::now();
 
         $collection = EloquentModelCastingTest::all()
             ->map(function (EloquentModelCastingTest $model) use ($now) {

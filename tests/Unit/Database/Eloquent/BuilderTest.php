@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Esazykin\LaravelClickHouse\Tests\Unit\Database\Eloquent;
 
-use Mockery\Mock;
-use PHPUnit\Framework\TestCase;
-use Illuminate\Database\DatabaseManager;
-use Tinderbox\ClickhouseBuilder\Query\Tuple;
-use Esazykin\LaravelClickHouse\Tests\Helpers;
-use Tinderbox\ClickhouseBuilder\Query\Grammar;
-use Tinderbox\ClickhouseBuilder\Query\Identifier;
+use Carbon\Carbon;
 use Esazykin\LaravelClickHouse\Database\Connection;
-use Tinderbox\ClickhouseBuilder\Query\Enums\Operator;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Esazykin\LaravelClickHouse\Database\Eloquent\Builder;
 use Esazykin\LaravelClickHouse\Database\Eloquent\Collection;
-use Esazykin\LaravelClickHouse\Tests\EloquentModelCastingTest;
-use Tinderbox\ClickhouseBuilder\Query\TwoElementsLogicExpression;
 use Esazykin\LaravelClickHouse\Database\Query\Builder as QueryBuilder;
+use Esazykin\LaravelClickHouse\Tests\EloquentModelCastingTest;
+use Esazykin\LaravelClickHouse\Tests\Helpers;
+use Illuminate\Database\DatabaseManager;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Mockery\Mock;
+use PHPUnit\Framework\TestCase;
+use Tinderbox\ClickhouseBuilder\Query\Enums\Operator;
+use Tinderbox\ClickhouseBuilder\Query\Grammar;
+use Tinderbox\ClickhouseBuilder\Query\Identifier;
+use Tinderbox\ClickhouseBuilder\Query\Tuple;
+use Tinderbox\ClickhouseBuilder\Query\TwoElementsLogicExpression;
 
 /**
  * @property Mock|Connection connection
@@ -216,9 +217,9 @@ class BuilderTest extends TestCase
                 $this->faker()->word => $this->faker()->randomLetter,
             ]),
             'arrayAttribute' => json_encode(range(1, 5)),
-            'dateAttribute' => now()->toDateTimeString(),
-            'datetimeAttribute' => now()->toDateString(),
-            'timestampAttribute' => now()->toDateString(),
+            'dateAttribute' => Carbon::now()->toDateTimeString(),
+            'datetimeAttribute' => Carbon::now()->toDateString(),
+            'timestampAttribute' => Carbon::now()->toDateString(),
         ];
         $connectionResultRow['jsonAttribute'] = json_encode($connectionResultRow['arrayAttribute']);
 
