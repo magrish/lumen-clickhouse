@@ -69,6 +69,17 @@ class Builder extends BaseBuilder
     }
 
     /**
+     * Get the count of the total records for the paginator.
+     *
+     * @param  array  $columns
+     * @return int
+     */
+    public function getCountForPagination1($columns = ['*'])
+    {
+        return $this->count($columns[0]);
+    }
+    
+    /**
      * Perform query and get first row.
      *
      * @throws \Tinderbox\Clickhouse\Exceptions\ClientException
