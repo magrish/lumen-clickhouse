@@ -74,11 +74,11 @@ class Builder extends BaseBuilder
      * @param  array  $columns
      * @return int
      */
-    public function getCountForPagination1($columns = ['*'])
+    public function getCountForPagination($columns = ['*'])
     {
         return $this->count($columns[0]);
     }
-    
+
     /**
      * Perform query and get first row.
      *

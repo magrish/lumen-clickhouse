@@ -25,3 +25,4 @@ class ClickHouseServiceProvider extends ServiceProvider
         Model::setConnectionResolver($db);
     }
 }
+
